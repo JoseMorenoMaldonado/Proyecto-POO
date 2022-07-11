@@ -29,9 +29,16 @@ public class Cliente extends Usuario {
     private ArrayList<Service> servicios_reservados = new ArrayList<>();
 
     public Cliente(int cedula, String name, String lastname, String username, String password, int phone_number, UserType user_type, int edad, long creditCard) {
-        super(cedula, name, lastname, username, password, phone_number, user_type);
+        //super(cedula, name, lastname, username, password, phone_number, user_type);
         this.edad = edad;
         this.creditCard = creditCard;
+        this.cedula = cedula;
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.phone_number = phone_number;
+        this.user_type = user_type;
     }
 
     public int getEdad() {

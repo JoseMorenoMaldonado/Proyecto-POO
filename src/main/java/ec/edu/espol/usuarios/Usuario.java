@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author Grupo#n
  */
-public class Usuario {
+public abstract class Usuario {
 
     protected int cedula;
     protected String name;
@@ -18,18 +18,8 @@ public class Usuario {
     protected String password;
     protected int phone_number;
     protected UserType user_type;
-
-    public Usuario(int cedula, String name, String lastname, String username, String password, int phone_number, UserType user_type) {
-        this.cedula = cedula;
-        this.name = name;
-        this.lastname = lastname;
-        this.username = username;
-        this.password = password;
-        this.phone_number = phone_number;
-        this.user_type = user_type;
-
-    }
-
+    
+    
     public int getCedula() {
         return cedula;
     }
@@ -85,66 +75,40 @@ public class Usuario {
     public void setUser_type(UserType user_type) {
         this.user_type = user_type;
     }
-    
-    /**
-     * Metodo abstrcto para consultar las reservas
-     * @param sc 
-     */
-    public  void consultar_reservas(Scanner sc) {}
+/**
+ * Metodo asbtracto para consultar reservas
+ * @param sc 
+ */
+    public abstract void consultar_reservas(Scanner sc);
 
     /**
      * Este método retorna una lista de todos los usuarios en el sistema leyendo
      * el archivo usuarios.txt
      *
-     * @return ArrayList<Usuario>
-     *
-     */
-    
-    public static ArrayList<Usuario> get_lista_usuarios_txt() {
-        ArrayList<Usuario> user_list = new ArrayList<>();
-        try (Scanner sc = new Scanner(new File(Util.getUsuarios_txt()))) {
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String[] tokens = linea.split(",");
-                UserType usertype = null;
-                switch (tokens[6].charAt(0)) {
-                    case 'C' ->
-                        usertype = UserType.CLIENTE;
-                    case 'V' ->
-                        usertype = UserType.CLIENTE_VIP;
-                    case 'A' ->
-                        usertype = UserType.ADMIN;
-                }
-                Usuario new_user = new Usuario(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], Integer.parseInt(tokens[5]), usertype);
-                user_list.add(new_user);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return user_list;
-    }
-
-    /**
-     *
-     * Este metodo retorna un administrador o cliente dado un username por medio
-     * de polimorfismo
-     *
      * @param username
-     * @return Usuario
-     *
+     * @return Retorna un ArrayList de todos los usuarios que existen.
      *
      */
     public static Usuario get_user(String username) {
-        for (Usuario user : get_lista_usuarios_txt()) {
-            if (user.getUsername().equals(username)) {
-                if (user.getUser_type().equals(UserType.ADMIN)) {
-                    return new Administrador(user.getCedula(), user.getName(), user.getLastname(), user.getUsername(),
-                            user.getPassword(), user.getPhone_number(), user.getUser_type());
-                } else {
-                    return new Cliente(user.getCedula(), user.getName(), user.getLastname(), user.getUsername(),
-                            user.getPassword(), user.getPhone_number(), user.getUser_type(), get_edad_data(user), get_tarjeta_data(user));
+        try ( Scanner sc = new Scanner(new File(Util.getUsuarios_txt()))) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String[] tokens = linea.split(",");
+                if (tokens[3].equals(username)) {
+                    if (tokens[6].charAt(0) == 'C' || tokens[6].charAt(0) == 'V') {
+                        Cliente cliente = new Cliente(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4], Integer.parseInt(tokens[5]),
+                                UserType.CLIENTE, get_edad_data(Integer.parseInt(tokens[0])), get_tarjeta_data(Integer.parseInt(tokens[0])));
+                        return cliente;
+                    }
+                    if (tokens[6].charAt(0) == 'A') {
+                        Administrador admin = new Administrador(Integer.parseInt(tokens[0]), tokens[1], tokens[2], tokens[3], tokens[4],
+                                Integer.parseInt(tokens[5]), UserType.ADMIN);
+                        return admin;
+                    }
                 }
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         return null;
     }
@@ -157,12 +121,12 @@ public class Usuario {
      * @return int
      *
      */
-    private static int get_edad_data(Usuario usuario) {
-        try (Scanner sc = new Scanner(new File(Util.getClientes_txt()))) {
+    private static int get_edad_data(int cedula) {
+        try ( Scanner sc = new Scanner(new File(Util.getClientes_txt()))) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
                 String[] tokens = linea.split(",");
-                if (Integer.parseInt(tokens[0]) == usuario.getCedula()) {
+                if (Integer.parseInt(tokens[0]) == cedula) {
                     return Integer.parseInt(tokens[1]);
                 }
             }
@@ -179,12 +143,12 @@ public class Usuario {
      * @return long
      *
      */
-    private static long get_tarjeta_data(Usuario usuario) {
+    private static long get_tarjeta_data(int cedula) {
         try ( Scanner sc = new Scanner(new File(Util.getClientes_txt()))) {
             while (sc.hasNextLine()) {
                 String linea = sc.nextLine();
                 String[] tokens = linea.split(",");
-                if (Integer.parseInt(tokens[0]) == usuario.getCedula()) {
+                if (Integer.parseInt(tokens[0]) == cedula) {
                     return Long.parseLong(tokens[2]);
                 }
             }

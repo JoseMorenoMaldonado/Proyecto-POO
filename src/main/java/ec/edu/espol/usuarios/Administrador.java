@@ -15,7 +15,13 @@ public class Administrador extends Usuario {
     String ciudad;
 
     public Administrador(int cedula, String name, String lastname, String username, String password, int phone_number, UserType user_type) {
-        super(cedula, name, lastname, username, password, phone_number, user_type);
+        this.cedula = cedula;
+        this.name = name;
+        this.lastname = lastname;
+        this.username = username;
+        this.password = password;
+        this.phone_number = phone_number;
+        this.user_type = user_type;
 
     }
 
