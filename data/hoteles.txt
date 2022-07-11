@@ -1,0 +1,4 @@
+3645,Four Points by Sheraton Cuenca,5,Centro histórico de Cuenca,true,true,false
+4444,Hilton Colon,5,Av.Francisco de Orellanza,true,true,true
+1234,Sol de Oriente,5,Cerca del centro historico de Guayaquil,true,false,false
+7827,Bellavista,4,A 5 minutos del parque La Carolina,false,true,false

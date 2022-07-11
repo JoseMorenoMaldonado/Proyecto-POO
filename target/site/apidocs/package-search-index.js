@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ec.edu.espol.hospedaje"},{"l":"ec.edu.espol.model"},{"l":"ec.edu.espol.poo_proyect"},{"l":"ec.edu.espol.usuarios"},{"l":"ec.edu.espol.util"}];updateSearchResults();

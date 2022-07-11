@@ -1,0 +1,4 @@
+9023,Cuenca's Deparments,5,true,false
+7658,Suburbio,4,true,false
+3095,Zona Rosa,3,true,false
+3337,Carolina,2,false,true
