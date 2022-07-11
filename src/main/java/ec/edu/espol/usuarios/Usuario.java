@@ -86,16 +86,20 @@ public class Usuario {
         this.user_type = user_type;
     }
     
-    
-    public void consultar_reservas(Scanner sc) {}
+    /**
+     * Metodo abstrcto para consultar las reservas
+     * @param sc 
+     */
+    public  void consultar_reservas(Scanner sc) {}
 
     /**
      * Este método retorna una lista de todos los usuarios en el sistema leyendo
      * el archivo usuarios.txt
      *
-     * @return Retorna un ArrayList de todos los usuarios que existen.
+     * @return ArrayList<Usuario>
      *
      */
+    
     public static ArrayList<Usuario> get_lista_usuarios_txt() {
         ArrayList<Usuario> user_list = new ArrayList<>();
         try (Scanner sc = new Scanner(new File(Util.getUsuarios_txt()))) {

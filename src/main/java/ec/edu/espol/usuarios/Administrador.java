@@ -34,7 +34,10 @@ public class Administrador extends Usuario {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-
+/**
+ * Este metodo imprime todas las reservas hechas
+ * @param sc 
+ */
     @Override
     public void consultar_reservas(Scanner sc) {
         ArrayList<Reserva> reservas = Reserva.get_every_reserva();
@@ -54,7 +57,11 @@ public class Administrador extends Usuario {
             System.out.println("No existen servicios reservados");
         }
     }
-
+/**
+ * Este metodo retorna el numero de reservas realizadas segun la ciudad
+ * @param lista
+ * @return int
+ */
     private int reservas_por_ciudad(ArrayList<Reserva> lista) {
         int total = 0;
         int hospedajes = 0;

@@ -68,12 +68,10 @@ public class Service {
     public void setId(long id) {
         this.id = id;
     }
-    //verificar que id servicio este en entretenimiento o hospedaje o transporte
-    //si el id esta creo el objeto y lo retorno sino es null.
-    // Obtengo este objeto (entretenimiento, hospedaje,transporte) y lo a;ado a la lista de servicios
-    //si el id que esta en otro archivo que no sea entretenimiento, obtengo ese id y lo busco en los otros archivos (hotel,departamento o vehiculo)
-    //Cuando encuentre ese nuevo_id creo ese o
-
+   /**
+    * Este metodo retorna todos los servicios disponibles
+    * @return ArrayList<Service>
+    */
     public static ArrayList<Service> get_every_service() {
         ArrayList<Service> servicios = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getServicios_txt()))) {
@@ -88,7 +86,10 @@ public class Service {
         }
         return servicios;
     }
-
+/**
+ * Este metodo imprime los datos generales de una reserva
+ * @param id 
+ */
     public void print_reserva(int id) {
         try ( Scanner sc = new Scanner(new File(Util.getReservas_txt()))) {
             while (sc.hasNextLine()) {

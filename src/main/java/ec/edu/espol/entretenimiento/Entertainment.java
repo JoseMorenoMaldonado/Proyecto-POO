@@ -77,7 +77,10 @@ public class Entertainment extends Service {
                 + " - " + this.regreso;
 
     }
-
+/**
+ * Este metodo imprime laa reserva de entretenimientos realizada por el cliente
+ * @param id 
+ */
     @Override
     public void print_reserva(int id) {
         super.print_reserva(id);
@@ -94,7 +97,10 @@ public class Entertainment extends Service {
             System.out.println(e.getMessage());
         }
     }
-
+/**
+ * Este metodo retorna todos los servicios de entretenimientos
+ * @return ArrayList<Entertainment>
+ */
     public static ArrayList<Entertainment> get_every_entertainment() {
         ArrayList<Entertainment> entertainments = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getEntretenimientos_txt()))) {
@@ -110,7 +116,11 @@ public class Entertainment extends Service {
         }
         return entertainments;
     }
-
+/**
+ * Este metodo obtiene todos los entretenimientos disponibles en una ciudad especifica
+ * @param ciudad
+ * @return ArrayList<Entertainment>
+ */
     public static ArrayList<Entertainment> get_available_entertainments(String ciudad) {
         ArrayList<Entertainment> available_entertainment = new ArrayList<>();
         for (Entertainment entretenimiento : Entertainment.get_every_entertainment()) {

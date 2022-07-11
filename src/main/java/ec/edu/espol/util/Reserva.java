@@ -89,7 +89,10 @@ public class Reserva {
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
     }
-
+/**
+ * Metodo que retorna todas las reservas realizadas
+ * @return ArrayList<Reserva>
+ */
     public static ArrayList<Reserva> get_every_reserva() {
         ArrayList<Reserva> reservas = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getReservas_txt()))) {
@@ -104,7 +107,11 @@ public class Reserva {
         }
         return reservas;
     }
-    
+    /**
+     * Metodo que retorna las reservas disponibles en una ciudad especifica
+     * @param ciudad
+     * @return ArrayList<Reserva>
+     */
     public static ArrayList<Reserva> get_available_reservas(String ciudad) {
         ArrayList<Reserva> available_reservas = new ArrayList<>();
         for (Reserva reserva : get_every_reserva()) {

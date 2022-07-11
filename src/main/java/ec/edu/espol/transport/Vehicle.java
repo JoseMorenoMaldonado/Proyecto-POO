@@ -121,9 +121,7 @@ public class Vehicle {
     
     /**
      * Este metodo devuelve una lista de todos los vehiculos
-     *
      * @return ArrayList<Vehicle>
-     *
      */
     public static ArrayList<Vehicle> get_every_vehicle() {
         ArrayList<Vehicle> vehiculos = new ArrayList<>();
@@ -154,7 +152,11 @@ public class Vehicle {
         }
         return vehiculos;
     }
-    
+    /**
+     * Este metodo retorna un vehiculo segun un ID
+     * @param id
+     * @return Vehicle
+     */
      public static Vehicle get_Vehicle(long id) {
         for(Vehicle vehicle : get_every_vehicle()){
             if(vehicle.getId() == id){

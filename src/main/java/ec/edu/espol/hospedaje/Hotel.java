@@ -103,7 +103,10 @@ public class Hotel extends Hospedaje {
                 + "\nPermite cancelacion gratis: " + cancelacion;
 
     }
-
+/**
+ * Este metodo retorna todos los servicios de hospedaje de hoteles
+ * @return ArrayList<Hotel>
+ */
     public static ArrayList<Hotel> get_every_hotel() {
         ArrayList<Hotel> hoteles = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getHoteles_txt()))) {
@@ -122,7 +125,11 @@ public class Hotel extends Hospedaje {
         }
         return hoteles;
     }
-
+/**
+ * Este metodo retorna todos los hoteles disponibles en una ciudad especifica
+ * @param ciudad
+ * @return ArrayList<Hotel>
+ */
     public static ArrayList<Hotel> get_available_hoteles(String ciudad) {
         ArrayList<Hotel> available_hoteles = new ArrayList<>();
         for (Hotel hotel : get_every_hotel()) {
@@ -133,7 +140,11 @@ public class Hotel extends Hospedaje {
 
         return available_hoteles;
     }
-
+/**
+ * Este metodo retorna el precio de una habitacion individual de un hotel dado
+ * @param hotel
+ * @return float
+ */
     public static float individual_price(Hotel hotel) {
         float price = 0;
         for (Habitacion habitacion : hotel.getHabitaciones()) {
@@ -143,7 +154,11 @@ public class Hotel extends Hospedaje {
         }
         return price;
     }
-
+/**
+ * Este metodo retorna el precio de una habitacion doble de un hotel dado
+ * @param hotel
+ * @return float
+ */
     public static float doble_price(Hotel hotel) {
         float price = 0;
         for (Habitacion habitacion : hotel.getHabitaciones()) {
@@ -153,7 +168,11 @@ public class Hotel extends Hospedaje {
         }
         return price;
     }
-
+/**
+ * Este metodo retorna el precio de una habitacion familiar de un hotel dado
+ * @param hotel
+ * @return float
+ */
     public static float familiar_price(Hotel hotel) {
         float price = 0;
         for (Habitacion habitacion : hotel.getHabitaciones()) {

@@ -76,7 +76,10 @@ public class Department extends Hospedaje {
                 + "\nIncluye piscina: " + pool;
 
     }
-    
+    /**
+     * Este metodo retorna todos los servicios de hospedaje en departamentos
+     * @return ArrayList<Department>
+     */
     public static ArrayList<Department> get_every_department() {
         ArrayList<Department> departamentos = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getDepartamentos_txt()))) {
@@ -94,7 +97,11 @@ public class Department extends Hospedaje {
         }
         return departamentos;
     }
-    
+    /**
+     * Este metodo retorna todos los departamentos de una ciudad especifica
+     * @param ciudad
+     * @return ArrayList<Department>
+     */
     public static ArrayList<Department> get_available_departamentos(String ciudad) {
         ArrayList<Department> available_departamentos = new ArrayList<>();
         for (Department departamento : get_every_department()) {

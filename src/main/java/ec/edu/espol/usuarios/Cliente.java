@@ -59,7 +59,7 @@ public class Cliente extends Usuario {
     }
 
     /**
-     * Metodo para que un cliente reserve transporte
+     * Metodo para que un cliente reserve hospedaje
      *
      * @param sc
      */
@@ -89,7 +89,13 @@ public class Cliente extends Usuario {
         }
 
     }
-
+/**
+ * Metodo para reservar hotel
+ * @param sc
+ * @param ciudad
+ * @param salida
+ * @param entrada 
+ */
     public void reservar_hotel(Scanner sc, String ciudad, Date salida, Date entrada) {
         ArrayList<Hotel> hoteles = Hotel.get_available_hoteles(ciudad);
         System.out.println("Estos son los hoteles disponibles:");
@@ -170,7 +176,13 @@ public class Cliente extends Usuario {
         }
 
     }
-
+/**
+ * Metodo para reservar departamento
+ * @param sc
+ * @param ciudad
+ * @param salida
+ * @param entrada 
+ */
     public void reservar_departamento(Scanner sc, String ciudad, Date salida, Date entrada) {
         ArrayList<Department> departamentos = Department.get_available_departamentos(ciudad);
         System.out.println("Estos son los departamentos disponibles: ");
@@ -380,7 +392,10 @@ public class Cliente extends Usuario {
             }
         } while (!eleccion.toUpperCase().matches("SI|NO"));
     }
-
+/**
+ * Metodo para pagar una reserva dada segun el codigo
+ * @param sc 
+ */
     public void pagar_reserva(Scanner sc) {
         String ingreso = "Ingrese el codigo de reserva: ";
         int codigo = Util.ask_number(ingreso);
@@ -412,7 +427,14 @@ public class Cliente extends Usuario {
             pagar(cheque, year, month, codigo, sc);
         }
     }
-
+/**
+ * Metodo para pagar con tarjeta de credito
+ * @param tarjeta
+ * @param year
+ * @param month
+ * @param codigo
+ * @param sc 
+ */
     private void pagar(long tarjeta, int year, int month, int codigo, Scanner sc) {
         float valorPagar = Util.get_valor_reserva(codigo);
         double iva = 0.10;
@@ -447,7 +469,14 @@ public class Cliente extends Usuario {
         } while (!eleccion.toUpperCase().matches("SI|NO"));
 
     }
-
+/**
+ * Metodo para pagar con cheque
+ * @param cheque
+ * @param year
+ * @param month
+ * @param codigo
+ * @param sc 
+ */
     private void pagar(int cheque, int year, int month, int codigo, Scanner sc) {
         float valorPagar = Util.get_valor_reserva(codigo);
         double descuento = 0;
@@ -480,7 +509,10 @@ public class Cliente extends Usuario {
             }
         } while (!eleccion.toUpperCase().matches("SI|NO"));
     }
-
+/**
+ * Metodo para consultar las reservas hechs por el cliente
+ * @param sc 
+ */
     @Override
     public void consultar_reservas(Scanner sc) {
         ArrayList<Service> servicios = this.getServicios_reservados();

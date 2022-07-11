@@ -23,7 +23,10 @@ public class Hospedaje extends Service {
     public long getHospedaje_id() {
         return hospedaje_id;
     }
-    
+    /**
+     * Este metodo imprime todas la reserva de hospedaje realizada por el cliente
+     * @param id 
+     */
     @Override
     public void print_reserva(int id) {
         super.print_reserva(id);
@@ -40,7 +43,11 @@ public class Hospedaje extends Service {
             System.out.println(e.getMessage());
         }
     }
-
+/**
+ * Este metodo retorna un objeto Hospedaje segun un ID especifico
+ * @param hospedaje_id
+ * @return Hospedaje
+ */
     public static Hospedaje get_Hospedaje(long hospedaje_id) {
         Hospedaje hospedaje = null;
         try ( Scanner sc = new Scanner(new File(Util.getHospedajes_txt()))) {
@@ -58,7 +65,10 @@ public class Hospedaje extends Service {
         }
         return hospedaje;
     }
-
+/**
+ * Este metodo retorna todos los servicios de hospedajes
+ * @return ArrayList<Hospedaje>
+ */
     public static ArrayList<Hospedaje> get_every_hospedaje() {
         ArrayList<Hospedaje> hospedajes = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getHospedajes_txt()))) {
@@ -74,7 +84,11 @@ public class Hospedaje extends Service {
         }
         return hospedajes;
     }
-
+/**
+ * Este metodo retorna todos los hospedajes disponibles en una ciudad especifica
+ * @param ciudad
+ * @return ArrayList<Hospedaje>
+ */
     public static ArrayList<Hospedaje> get_available_hospedajes(String ciudad) {
         ArrayList<Hospedaje> available_hospedajes = new ArrayList<>();
         for (Hospedaje hospedaje : Hospedaje.get_every_hospedaje()) {

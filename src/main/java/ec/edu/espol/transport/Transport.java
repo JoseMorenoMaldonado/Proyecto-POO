@@ -27,7 +27,10 @@ public class Transport extends Service {
     public Vehicle getVehiculo() {
         return vehiculo;
     }
-
+/**
+ * Este metodo imprime los datos de reserva de transporte que ha hecho el usuario
+ * @param id 
+ */
     @Override
     public void print_reserva(int id) {
         super.print_reserva(id);
@@ -43,7 +46,10 @@ public class Transport extends Service {
             System.out.println(e.getMessage());
         }
     }
-
+/**
+ * Este metodo retorna todos los servicios de transporte
+ * @return ArrayList<Transport>
+ */
     public static ArrayList<Transport> get_every_transport() {
         ArrayList<Transport> transportes = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getTransportes_txt()))) {
@@ -59,7 +65,11 @@ public class Transport extends Service {
         }
         return transportes;
     }
-
+/**
+ * Este metodo retorna los transportes disponibles en una ciudad especifica
+ * @param ciudad
+ * @return ArrayList<Transport>
+ */
     public static ArrayList<Transport> get_available_transportes(String ciudad) {
         ArrayList<Transport> available_transportes = new ArrayList<>();
         for (Transport transport : get_every_transport()) {

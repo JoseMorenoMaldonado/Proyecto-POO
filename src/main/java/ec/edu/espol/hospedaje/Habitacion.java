@@ -75,7 +75,10 @@ public class Habitacion {
     public void setHospedaje_id(long hospedaje_id) {
         this.hospedaje_id = hospedaje_id;
     }
-
+/**
+ * Este metodo retorna todos los servicios de hospedaje en habitaciones
+ * @return ArrayList<Habitacion>
+ */
     public static ArrayList<Habitacion> get_every_habitacion() {
         ArrayList<Habitacion> habitaciones = new ArrayList<>();
         try ( Scanner sc = new Scanner(new File(Util.getHabitaciones_txt()))) {
@@ -109,7 +112,11 @@ public class Habitacion {
         return habitaciones;
 
     }
-
+/**
+ * Este metodo retorna todas las habitaciones disponibles en un hospedaje especifico
+ * @param hospedaje_id
+ * @return ArrayList<Habitacion>
+ */
     public static ArrayList<Habitacion> get_available_habitaciones(long hospedaje_id) {
         ArrayList<Habitacion> available_habitaciones = new ArrayList<>();
         for (Habitacion habitacion : get_every_habitacion()) {
